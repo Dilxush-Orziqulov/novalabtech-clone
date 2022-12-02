@@ -9,7 +9,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family:  sans-serif;
+  font-family: sans-serif;
 }
 
 .body-section {
@@ -29,6 +29,7 @@
   position: fixed;
   left: 0;
   background-color: #081825;
+  z-index: 999;
 }
 
 .top-header__left-side,
@@ -146,10 +147,12 @@ a {
   justify-content: flex-start;
   padding-top: 100px;
 }
+
 .menu.show .menu-item {
   text-align: left;
   margin: 20px 0;
 }
+
 .menu.show .menu-item a {
   color: #000;
   font-size: 1.5rem;
@@ -165,49 +168,199 @@ a {
 }
 
 
-.product-card-box{
+.product-card-box {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
 
-.product-card{
+.product-card {
   border-radius: 10px;
   width: 90%;
   box-shadow: 0 40px 60px rgb(0 0 0 / 5%), 0 4px 28px -4px rgb(0 0 0 / 4%);
   transition: 0.7s;
+  position: relative;
+  overflow: hidden;
 }
 
-.product-card:hover{
-  color: #fff;
+.product-card::before {
+  content: '';
+  display: flex;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  position: absolute;
   background-color: #1e6eeb;
+  left: -220px;
+  bottom: -17px;
+  z-index: -1;
+  transition: 0.6s ease;
 }
 
-.product-card:hover span{
+
+.product-card:hover.product-card::before {
+  transform: scale(6);
+  transition: 1s ease;
+}
+
+.product-card:hover * {
   color: #fff;
   transition: 0s;
 }
 
 
+
+.industry-card {
+  height: 50vh;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 21.5%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  cursor: pointer;
+  position: relative;
+  z-index: 888;
+}
+
+.industry-card::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  background-color: #000;
+  opacity: 0.25;
+  position: absolute; 
+  left: 0;
+  bottom: 0;
+  z-index: -2;
+}
+
+.industry-card:nth-child(2){
+  background-image: url(../images/government.webp);
+}
+
+
+.industry-card:nth-child(3){
+  background-image: url(../images/social.webp);
+}
+
+
+.industry-card:nth-child(4){
+  background-image: url(../images/Fitness.jpeg);
+}
+
+
+.industry-card:nth-child(5){
+  background-image: url(../images/travel.jpeg);
+}
+
+.load {
+  width: 90%;
+  height: 8px;
+  border-radius: 50px;
+  background-color: #898c8f;
+  position: relative;
+  overflow: hidden;
+}
+
+.load::before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  position: absolute;
+  left: -40px;
+  transition: 1s ease;
+  animation-name: loading;
+  animation-duration: 8.4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(18);
+  }
+}
+
+.arrow {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.arrow:nth-child(1){
+  margin-left: -35px;
+}
+
+.arrow:hover{
+  background-color: #2671eb;
+}
+
+.arrow:hover a span{
+  color: #fff !important;
+  width: 30px !important;
+}
+
+
+.mamur-box{
+  height: 650px;
+}
+
+.btn-learn{
+  text-decoration: none;
+  height: 50px;
+  width: 170px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  margin-top: 50px !important;
+}
+
+.mamur-about{
+  overflow-y: hidden;
+  line-height: 26px;
+  height: 500px;
+}
+
 @media screen and (max-width: 1350px) {
 
-  .product-card-box{
+  .product-card-box {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .arrow{
+    display: none !important;
+  }
+
+  .mamur-about{
+    overflow-y: scroll;
 }
 
-@media  screen and (max-width: 991px) {
-  .btn-links{
+@media screen and (max-width: 991px) {
+  .btn-links {
     background-color: #1e6eeb !important;
     border: none !important;
   }
+
 }
 
-@media screen  and (max-width: 576px) {
-    .product-card-box{
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-    }
+@media screen and (max-width: 576px) {
+  .product-card-box {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 }
